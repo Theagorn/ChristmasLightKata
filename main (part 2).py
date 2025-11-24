@@ -1,18 +1,18 @@
 #--------------------Définition des fonctions--------------------#
-#Fonction "turnOn" pour allumer une lumière
+#Fonction "turnOn" pour augmenter la luminosité d'une lumière de 1
 def turnOn(x, y):
-    grid[x][y] = 1
+    grid[x][y] += 1
 
-#Fonction "turnOff" pour éteindre une lumière
+#Fonction "turnOff" pour baisser la luminosité d'une lumière de 1, sans descendre en dessous de 0
 def turnOff(x, y):
-    grid[x][y] = 0
-
-#Fonction "toggle" pour inverser l'état d'une lumière
-def toggle(x, y):
-    if grid[x][y] == 0:
-        grid[x][y] = 1
+    if grid[x][y] > 1:
+        grid[x][y] -= 1
     else:
         grid[x][y] = 0
+
+#Fonction "toggle" pour augmenter la luminosité d'une lumière de 2
+def toggle(x, y):
+    grid[x][y] += 2
 
 #Fonction "instruction" pour traiter les commandes de l'utilisateur
 def instruction():
@@ -78,8 +78,8 @@ while next == True:
 # On peut maintenant compter le nombre de lumières allumées (valeur 1) dans la grille
 for i in range(1000):
     for j in range(1000):
-        if grid[i][j] == 1:
-            lightCount += 1
+        if grid[i][j] != 0:
+            lightCount += grid[i][j]
 
 print("Nombre de lumières allumées :", lightCount)
 
@@ -94,4 +94,5 @@ print("Nombre de lumières allumées :", lightCount)
 # turn on 351,678 through 951,908
 # toggle 720,196 through 897,994
 # toggle 831,394 through 904,860
-# Le résultat final devrait être : Nombre de lumières allumées : 230 022
+# Le résultat final de la partie 2 devrait être :
+# Nombre de lumières allumées : 539 560
